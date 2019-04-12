@@ -1,0 +1,309 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Threading;
+namespace MidTerm
+{
+    public partial class Form1 : Form
+    {
+        Bitmap bitmap;
+        Graphics g;
+        Player player;
+        int act=0;
+        List<Dan> BangDan = new List<Dan>();
+        bool clickUp = false, right, left,BoomBegin=false;
+        Point vtBoom;
+        int step = 0;
+        public Form1()
+        {
+            InitializeComponent();
+
+            bitmap = new Bitmap(Main_PictureBox.Width, Main_PictureBox.Height);
+            g = Graphics.FromImage(bitmap);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+           
+           
+        }
+
+        int force, index = 0, y_nv=0;
+        double ThoiGian,dem;
+        int vt = 16;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            player = new Player();
+            player.location.Y = Main_PictureBox.Height - MidTerm.Properties.Resources.r1.Height;
+            player.location.X = 10;
+            Random r = new Random();
+            // làm trong suốt và đặt vị trí ban đầu.
+            ptb_DinoBlue.Parent = Main_PictureBox;
+            ptb_DinoYellow.Parent = Main_PictureBox;
+            ptb_Boom.Parent = Main_PictureBox;
+            ptb_Boom2.Parent = Main_PictureBox;
+            ptb_Boom3.Parent = Main_PictureBox;
+            ptb_Boom4.Parent = Main_PictureBox;
+            ptb_DinoBlue.Visible = false;
+            ptb_DinoYellow.Visible = false;
+            ptb_Boom.Visible = false;
+            ptb_Boom2.Visible = false;
+            ptb_Boom3.Visible = false;
+            ptb_Boom4.Visible = false;
+            ptb_DinoBlue.Left = Main_PictureBox.Width + 50 + r.Next(50);
+            ptb_DinoBlue.Top = Main_PictureBox.Height - ptb_DinoBlue.Height+vt;
+            ptb_DinoYellow.Left = Main_PictureBox.Width + 50 + r.Next(50);
+            ptb_DinoYellow.Top = Main_PictureBox.Height - ptb_DinoYellow.Height+vt;
+            Dan dan = new Dan();
+            BangDan.Add(dan);
+            DanBay.Start();
+            timer_HoatCanh.Start();
+            timer_Nhanvatchay.Start();
+            timer_DinoDiChuyen.Start();
+          
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right) { right = false; }
+            if (e.KeyCode == Keys.Left) { left = false; }
+        }
+
+        private void timer_HoatCanh_Tick(object sender, EventArgs e)
+        {
+            draw(act);
+           
+        }
+
+      
+        // timer điều khiển đạn
+        private void DanBay_Tick(object sender, EventArgs e)
+        {
+            if (BangDan[0].shoot == false)
+            {
+                BangDan[0].shoot = true;
+                BangDan[0].location.X = player.location.X + MidTerm.Properties.Resources.r1.Width;
+                BangDan[0].location.Y = player.location.Y + MidTerm.Properties.Resources.r1.Height / 2;
+            }
+            for (int i = 0; i < BangDan.Count; i++)
+            {
+                if (BangDan[i].location.X + MidTerm.Properties.Resources.dan.Width >= Main_PictureBox.Width - 5)
+                {
+                    BangDan[i].location.X = player.location.X + MidTerm.Properties.Resources.r1.Width;
+                    BangDan[i].shoot = false;
+      
+                }
+                else
+                    BangDan[i].location.X += 10;
+                // so sánh khủng long trúng đạn
+                if ((BangDan[i].location.X >= ptb_DinoBlue.Left - 13 && BangDan[i].location.Y >= ptb_DinoBlue.Top+10))
+                {
+                    vtBoom = new Point(ptb_DinoBlue.Left - 5, ptb_DinoBlue.Top - 20);
+                    BoomBegin = true;
+                    timer_Boom.Start();
+                    BangDan[i].location.X = player.location.X + MidTerm.Properties.Resources.r1.Width;
+                    BangDan[i].shoot = false;
+                    ptb_DinoBlue.Visible = false;
+                }
+                else if(BangDan[i].location.X>=ptb_DinoYellow.Left-13&&BangDan[i].location.Y>=ptb_DinoYellow.Top+10)
+                {
+                    BoomBegin = true;
+                    vtBoom = new Point(ptb_DinoYellow.Left - 5, ptb_DinoYellow.Top - 20);
+                    timer_Boom.Start();
+                    BangDan[i].location.X = player.location.X + MidTerm.Properties.Resources.r1.Width;
+                    BangDan[i].shoot = false;
+                    ptb_DinoYellow.Visible = false;
+                }
+            }
+        }
+
+        private void timer_DinoDiChuyen_Tick(object sender, EventArgs e)
+        {
+            if(ptb_DinoYellow.Visible==false&&ptb_DinoBlue.Visible==false)
+            {
+                Random r = new Random();
+                int temp = r.Next(2);
+                if(temp==1)
+                {
+                    ptb_DinoBlue.Visible = true;
+                    ptb_DinoYellow.Visible = false;
+                    
+                }
+                else if (temp==0)
+                {
+                    ptb_DinoYellow.Visible = true;
+                    ptb_DinoBlue.Visible = false;
+                    
+                }
+                ptb_DinoBlue.Left = Main_PictureBox.Width + 50 + r.Next(50);
+                ptb_DinoBlue.Top = Main_PictureBox.Height - ptb_DinoBlue.Height+vt;
+                ptb_DinoYellow.Left = Main_PictureBox.Width + 50 + r.Next(50);
+                ptb_DinoYellow.Top = Main_PictureBox.Height - ptb_DinoYellow.Height+vt;
+            }
+            if(ptb_DinoYellow.Visible==true)
+            {// kiểm tra khủng long qua khỏi map và đụng player
+                if (ptb_DinoYellow.Left <= 2 || (ptb_DinoYellow.Left <= player.location.X + MidTerm.Properties.Resources.r1.Width && ptb_DinoYellow.Left > player.location.X &&
+                    ptb_DinoYellow.Top <= player.location.Y + MidTerm.Properties.Resources.r1.Height))
+                {
+                    BoomBegin = true;
+                    vtBoom = new Point(ptb_DinoYellow.Left - 5, ptb_DinoYellow.Top - 20);
+                    timer_Boom.Start();
+                    ptb_DinoYellow.Visible = false;
+                }
+                else
+                    ptb_DinoYellow.Left -= 5;
+            }
+            else if(ptb_DinoBlue.Visible==true)
+            {
+                if (ptb_DinoBlue.Left <= 2 || (ptb_DinoBlue.Left <= player.location.X + MidTerm.Properties.Resources.r1.Width && ptb_DinoBlue.Left > player.location.X &&
+                    ptb_DinoBlue.Top <= player.location.Y + MidTerm.Properties.Resources.r1.Height))
+                {
+                    vtBoom = new Point(ptb_DinoBlue.Left - 5, ptb_DinoBlue.Top - 20);
+                    BoomBegin = true;
+                    timer_Boom.Start();
+                    ptb_DinoBlue.Visible = false;
+                }
+                else ptb_DinoBlue.Left -= 5;
+            }
+        }
+
+        private void timer_Boom_Tick(object sender, EventArgs e)
+        {
+            
+            if (BoomBegin == true)
+            {
+                step++;
+                if (step == 1)
+                {   ptb_Boom.Top = vtBoom.Y+24;
+                    ptb_Boom.Left = vtBoom.X;
+                    ptb_Boom.Visible = true;
+                    ptb_Boom2.Visible = false;
+                    ptb_Boom3.Visible = false;
+                    ptb_Boom4.Visible = false;
+                }
+                else if (step == 2)
+                {
+                    ptb_Boom2.Top = vtBoom.Y + 24;
+                    ptb_Boom2.Left = vtBoom.X;
+                    ptb_Boom.Visible = false;
+                    ptb_Boom2.Visible =true;
+                    ptb_Boom3.Visible = false;
+                    ptb_Boom4.Visible = false;
+                }
+                else if (step == 3)
+                {
+                    ptb_Boom3.Location = vtBoom;
+
+                    ptb_Boom.Visible = false;
+                    ptb_Boom2.Visible = false;
+                    ptb_Boom3.Visible = true;
+                    ptb_Boom4.Visible = false;
+                }
+                else if (step == 4)
+                {
+                    ptb_Boom4.Location = vtBoom;
+                    ptb_Boom.Visible = false;
+                    ptb_Boom2.Visible = false;
+                    ptb_Boom3.Visible = false;
+                    ptb_Boom4.Visible = true;
+                    BoomBegin = false;
+                    step = 0;
+                }
+            }
+            else
+            {
+                ptb_Boom4.Visible = false;
+                timer_Boom.Stop();
+            }
+        }
+
+        private void timer_Nhanvatchay_Tick(object sender, EventArgs e)
+        {
+            act++;
+            if (act == 4)
+                act = 0;
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Right) { right = true; }
+            if (e.KeyCode == Keys.Left) { left = true; }
+            if (e.KeyData == Keys.Up)      // khi ấn nút mũi tên lên nhân vật sẽ nhảy
+            {
+                if (clickUp == false)
+                {
+                    y_nv = 0;
+                    clickUp = true;
+                    force = 30;
+                    timer1_NhanVatNhay.Start();
+                   
+                }
+            }
+           
+        }
+
+        int x_tien;
+        private void timer1_NhanVatNhay_Tick(object sender, EventArgs e)
+        {
+
+            if (right == true) { player.location.X += 5; }
+            if (left == true) { player.location.X -= 5; }
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
+
+
+            if (y_nv >= 300)
+            {
+                //player.location.Y += 15;
+                for (int i = 0; i < 16; i++)
+                    player.location.Y += 1;
+            }
+            else
+            {
+                // xác định nhân vật đã nhảy cao bao nhiêu            
+               //player.location.Y -= force;
+                force -= 1;
+                for (int i = 0; i <= force; i++)
+                    player.location.Y -= 1;
+                y_nv += force;
+
+            }
+            //for (int i = 0; i < BangDan.Count; i++)
+            //{
+            //    BangDan[i].location.X = player.location.X + MidTerm.Properties.Resources.r1.Width;
+            //    BangDan[i].location.Y = player.location.Y + MidTerm.Properties.Resources.r1.Height / 2;
+            //}
+            if ((player.location.Y+ MidTerm.Properties.Resources.r4.Height) >= pn_ground.Top)
+            {
+                timer1_NhanVatNhay.Stop();
+                player.location.Y = Main_PictureBox.Height - MidTerm.Properties.Resources.r1.Height;
+                clickUp = false;
+                // còn nếu = true tức nhân vật đang thực hiện nhảy. sẽ đợi nhân vật đáp đất mới cho t đc phép nhảy tiếp
+            }
+            Thread.Sleep(1);
+            Application.DoEvents();
+        }
+        public void draw(int act)
+        {
+            g.Clear(Color.White);
+            g.DrawImage(MidTerm.Properties.Resources.background, new Point(0, 0));
+            if (act == 1)
+                g.DrawImage(MidTerm.Properties.Resources.r1, player.location);
+            else if (act == 2)
+                g.DrawImage(MidTerm.Properties.Resources.r2, player.location);
+            else if (act == 3)
+                g.DrawImage(MidTerm.Properties.Resources.r3, player.location);
+            else
+                g.DrawImage(MidTerm.Properties.Resources.r4, player.location);
+            for (int j = 0; j < BangDan.Count; j++)
+                if (BangDan[j].shoot == true)
+                    g.DrawImage(MidTerm.Properties.Resources.dan, BangDan[j].location);
+           
+            Main_PictureBox.Image = bitmap;
+        }
+       
+
+    }
+}
