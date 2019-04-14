@@ -13,6 +13,8 @@ namespace MidTerm
     class Dan
     {
         public PointF location;
+        public PointF locationOld;
         public bool shoot = false;
+        public int type;
     }
 }

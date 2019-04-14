@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boss.cs" />
     <Compile Include="Dan.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -98,9 +99,6 @@
     <None Include="Resources\dan.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\3.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\background.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +112,123 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\b4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\t1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\t2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\12.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\13.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\14.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\15.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\17.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\18.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\19.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\20.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\21.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\23.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\24.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\25.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\26.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\27.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\28.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\30.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\31.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\33.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\34.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\35.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\36.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

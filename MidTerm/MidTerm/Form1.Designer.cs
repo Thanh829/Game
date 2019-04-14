@@ -35,22 +35,24 @@
             this.timer_Nhanvatchay = new System.Windows.Forms.Timer(this.components);
             this.DanBay = new System.Windows.Forms.Timer(this.components);
             this.timer_DinoDiChuyen = new System.Windows.Forms.Timer(this.components);
+            this.timer_Boom = new System.Windows.Forms.Timer(this.components);
+            this.timer_Boss = new System.Windows.Forms.Timer(this.components);
+            this.ptb_Boom4 = new System.Windows.Forms.PictureBox();
+            this.ptb_Boom3 = new System.Windows.Forms.PictureBox();
+            this.ptb_Boom2 = new System.Windows.Forms.PictureBox();
+            this.ptb_Boom = new System.Windows.Forms.PictureBox();
             this.ptb_DinoYellow = new System.Windows.Forms.PictureBox();
             this.ptb_DinoBlue = new System.Windows.Forms.PictureBox();
             this.pn_ground = new System.Windows.Forms.Panel();
             this.Main_PictureBox = new System.Windows.Forms.PictureBox();
-            this.timer_Boom = new System.Windows.Forms.Timer(this.components);
-            this.ptb_Boom = new System.Windows.Forms.PictureBox();
-            this.ptb_Boom2 = new System.Windows.Forms.PictureBox();
-            this.ptb_Boom3 = new System.Windows.Forms.PictureBox();
-            this.ptb_Boom4 = new System.Windows.Forms.PictureBox();
+            this.timer_ThienThach = new System.Windows.Forms.Timer(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_DinoYellow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_DinoBlue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom4)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1_NhanVatNhay
@@ -77,6 +79,59 @@
             // 
             this.timer_DinoDiChuyen.Interval = 40;
             this.timer_DinoDiChuyen.Tick += new System.EventHandler(this.timer_DinoDiChuyen_Tick);
+            // 
+            // timer_Boom
+            // 
+            this.timer_Boom.Tick += new System.EventHandler(this.timer_Boom_Tick);
+            // 
+            // timer_Boss
+            // 
+            this.timer_Boss.Interval = 4750;
+            this.timer_Boss.Tick += new System.EventHandler(this.timer_Boss_Tick);
+            // 
+            // ptb_Boom4
+            // 
+            this.ptb_Boom4.BackColor = System.Drawing.Color.Transparent;
+            this.ptb_Boom4.Image = ((System.Drawing.Image)(resources.GetObject("ptb_Boom4.Image")));
+            this.ptb_Boom4.Location = new System.Drawing.Point(1212, 294);
+            this.ptb_Boom4.Name = "ptb_Boom4";
+            this.ptb_Boom4.Size = new System.Drawing.Size(207, 132);
+            this.ptb_Boom4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.ptb_Boom4.TabIndex = 7;
+            this.ptb_Boom4.TabStop = false;
+            // 
+            // ptb_Boom3
+            // 
+            this.ptb_Boom3.BackColor = System.Drawing.Color.Transparent;
+            this.ptb_Boom3.Image = ((System.Drawing.Image)(resources.GetObject("ptb_Boom3.Image")));
+            this.ptb_Boom3.Location = new System.Drawing.Point(931, 294);
+            this.ptb_Boom3.Name = "ptb_Boom3";
+            this.ptb_Boom3.Size = new System.Drawing.Size(254, 123);
+            this.ptb_Boom3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.ptb_Boom3.TabIndex = 6;
+            this.ptb_Boom3.TabStop = false;
+            // 
+            // ptb_Boom2
+            // 
+            this.ptb_Boom2.BackColor = System.Drawing.Color.Transparent;
+            this.ptb_Boom2.Image = ((System.Drawing.Image)(resources.GetObject("ptb_Boom2.Image")));
+            this.ptb_Boom2.Location = new System.Drawing.Point(721, 294);
+            this.ptb_Boom2.Name = "ptb_Boom2";
+            this.ptb_Boom2.Size = new System.Drawing.Size(176, 85);
+            this.ptb_Boom2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptb_Boom2.TabIndex = 5;
+            this.ptb_Boom2.TabStop = false;
+            // 
+            // ptb_Boom
+            // 
+            this.ptb_Boom.BackColor = System.Drawing.Color.Transparent;
+            this.ptb_Boom.Image = ((System.Drawing.Image)(resources.GetObject("ptb_Boom.Image")));
+            this.ptb_Boom.Location = new System.Drawing.Point(676, 123);
+            this.ptb_Boom.Name = "ptb_Boom";
+            this.ptb_Boom.Size = new System.Drawing.Size(163, 125);
+            this.ptb_Boom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptb_Boom.TabIndex = 4;
+            this.ptb_Boom.TabStop = false;
             // 
             // ptb_DinoYellow
             // 
@@ -111,59 +166,17 @@
             // Main_PictureBox
             // 
             this.Main_PictureBox.BackColor = System.Drawing.Color.Transparent;
-            this.Main_PictureBox.Location = new System.Drawing.Point(0, 23);
+            this.Main_PictureBox.Location = new System.Drawing.Point(0, 24);
             this.Main_PictureBox.Name = "Main_PictureBox";
-            this.Main_PictureBox.Size = new System.Drawing.Size(1602, 615);
+            this.Main_PictureBox.Size = new System.Drawing.Size(1602, 612);
             this.Main_PictureBox.TabIndex = 0;
             this.Main_PictureBox.TabStop = false;
             // 
-            // timer_Boom
+            // timer_ThienThach
             // 
-            this.timer_Boom.Tick += new System.EventHandler(this.timer_Boom_Tick);
-            // 
-            // ptb_Boom
-            // 
-            this.ptb_Boom.BackColor = System.Drawing.Color.Transparent;
-            this.ptb_Boom.Image = ((System.Drawing.Image)(resources.GetObject("ptb_Boom.Image")));
-            this.ptb_Boom.Location = new System.Drawing.Point(676, 123);
-            this.ptb_Boom.Name = "ptb_Boom";
-            this.ptb_Boom.Size = new System.Drawing.Size(163, 125);
-            this.ptb_Boom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ptb_Boom.TabIndex = 4;
-            this.ptb_Boom.TabStop = false;
-            // 
-            // ptb_Boom2
-            // 
-            this.ptb_Boom2.BackColor = System.Drawing.Color.Transparent;
-            this.ptb_Boom2.Image = ((System.Drawing.Image)(resources.GetObject("ptb_Boom2.Image")));
-            this.ptb_Boom2.Location = new System.Drawing.Point(721, 294);
-            this.ptb_Boom2.Name = "ptb_Boom2";
-            this.ptb_Boom2.Size = new System.Drawing.Size(176, 85);
-            this.ptb_Boom2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ptb_Boom2.TabIndex = 5;
-            this.ptb_Boom2.TabStop = false;
-            // 
-            // ptb_Boom3
-            // 
-            this.ptb_Boom3.BackColor = System.Drawing.Color.Transparent;
-            this.ptb_Boom3.Image = ((System.Drawing.Image)(resources.GetObject("ptb_Boom3.Image")));
-            this.ptb_Boom3.Location = new System.Drawing.Point(931, 294);
-            this.ptb_Boom3.Name = "ptb_Boom3";
-            this.ptb_Boom3.Size = new System.Drawing.Size(254, 123);
-            this.ptb_Boom3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.ptb_Boom3.TabIndex = 6;
-            this.ptb_Boom3.TabStop = false;
-            // 
-            // ptb_Boom4
-            // 
-            this.ptb_Boom4.BackColor = System.Drawing.Color.Transparent;
-            this.ptb_Boom4.Image = ((System.Drawing.Image)(resources.GetObject("ptb_Boom4.Image")));
-            this.ptb_Boom4.Location = new System.Drawing.Point(1212, 294);
-            this.ptb_Boom4.Name = "ptb_Boom4";
-            this.ptb_Boom4.Size = new System.Drawing.Size(207, 132);
-            this.ptb_Boom4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.ptb_Boom4.TabIndex = 7;
-            this.ptb_Boom4.TabStop = false;
+            this.timer_ThienThach.Enabled = true;
+            this.timer_ThienThach.Interval = 20;
+            this.timer_ThienThach.Tick += new System.EventHandler(this.timer_ThienThach_Tick);
             // 
             // Form1
             // 
@@ -183,13 +196,13 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_DinoYellow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_DinoBlue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_Boom4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,6 +223,8 @@
         private System.Windows.Forms.PictureBox ptb_Boom2;
         private System.Windows.Forms.PictureBox ptb_Boom3;
         private System.Windows.Forms.PictureBox ptb_Boom4;
+        private System.Windows.Forms.Timer timer_Boss;
+        private System.Windows.Forms.Timer timer_ThienThach;
     }
 }
 
